@@ -1,8 +1,6 @@
 module SmallestMultiple
   def self.is_dev_by_every(number, arr)
-    devided = true
-    arr.each {|num| devided = false if number % num != 0}
-    devided
+    !arr.any? {|num| number % num != 0}
   end
 
   def self.get_smallest_multiple_for(max_number_in_range)
