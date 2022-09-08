@@ -1,5 +1,5 @@
 module SmallestMultiple
-  def self.is_dev_by_every?(number, arr)
+  def self.dev_by_every?(number, arr)
     !arr.any? {|num| number % num != 0}
   end
 
@@ -9,7 +9,7 @@ module SmallestMultiple
     multiple = max_number_in_range
     (1..max_possible_cm).each do |i|
       multiple = max_number_in_range * i
-      break if self.is_dev_by_every?(multiple, range_arr)
+      break if self.dev_by_every?(multiple, range_arr)
     end
     multiple
   end
