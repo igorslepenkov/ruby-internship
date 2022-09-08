@@ -1,10 +1,6 @@
 module PrimeNumbers
   def self.check_is_prime(number)
-    res = true
-    (2..(Math.sqrt(number)).round).each do |x|
-      res = false if number % x == 0
-    end
-    return res
+    !(2...number).any? {|x| number % x == 0}
   end
 
   def self.find_largest_prime(number)
@@ -13,5 +9,4 @@ module PrimeNumbers
       max_prime
     end
   end
-
 end
