@@ -18,22 +18,20 @@ class LargestProduct
   07198403850962455444362981230987879927244284909188
   84580156166097919133875499200524063689912560717606
   05886116467109405077541002256983155200055935729725
-  71636269561882670428252483600823257530420752963450'.strip
+  71636269561882670428252483600823257530420752963450'.gsub(/\s/, '')
 
-  def self.get_sequencies_from_list
+  def self.get_sequencies_from_list(number_of_chars)
     sequencies = []
-    (0..@@list.size).each_with_index {|i, idx| sequencies.push(@@list.slice(idx...idx + 13))}
-    sequencies
+    (0..@@list.size).each_with_index {|i, idx| sequencies.push(@@list.slice(idx...idx + number_of_chars))}
+    sequencies.filter {|sequence| sequence.size == number_of_chars}
   end
 
-  def self.get_biggest_product_sequence
-    sequencies = self.get_sequencies_from_list
+  def self.get_biggest_product_sequence(number_of_chars)
+    sequencies = self.get_sequencies_from_list(number_of_chars)
     res = sequencies.map do |sequence|
       mult = sequence.split('').map{|char| char.to_i}.reduce(:*)
       [sequence, mult]
     end
-    res.sort! {|a, b| a[0] - b[0]}
+    res.sort! {|a, b| b[1]<=>a[1]}[0][1]
   end
 end
-
-puts LargestProduct.get_biggest_product_sequence
