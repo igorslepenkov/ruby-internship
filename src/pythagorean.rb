@@ -1,19 +1,18 @@
 module Pythagorean
+  def self.right_triangle?(a, b, c)
+    sides = [a, b, c].sort{|a, b| b <=> a}
+    hyp = sides[0]
+    first_leg = sides[1]
+    second_leg = sides[2]
+    first_leg.pow(2) + second_leg.pow(2) == hyp.pow(2)
+  end
+
   def self.find_triplet_product_from(sum)
-    a = (sum / 2)-1
-    b = 1
-    until b == (sum / 2)-1
-      puts a
-      puts b
-      c = Math.sqrt(a.pow(2) + b.pow(2))
-      if a + b + c == sum
-      elsif a + b + c > sum
-        a -= 1 
-      elsif a + b + c < sum
-        b += 1
+    (1..(sum/3).floor).each do |a| 
+      (a..(sum/2).floor).each do |b|
+        c = sum - a - b
+        return a * b * c if self.right_triangle?(a, b, c)
       end
     end
-    a*b*c
   end
 end
-
