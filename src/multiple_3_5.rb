@@ -6,5 +6,3 @@ module FindSumOfMultiples
     end
   end
 end
-
-puts FindSumOfMultiples.find_sum_loop
