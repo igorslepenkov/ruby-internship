@@ -1,6 +1,9 @@
-SELECT DISTINCT prof_num
-FROM prof_group_match
-WHERE subj_num IN (
+SELECT last_name
+FROM professors
+WHERE prof_num IN (
+ SELECT DISTINCT prof_num
+ FROM prof_group_match
+ WHERE subj_num IN (
   SELECT subj_num
   FROM prof_group_match
   WHERE prof_num IN (
@@ -8,4 +11,6 @@ WHERE subj_num IN (
     FROM prof_group_match
     WHERE subj_num = '14П'
   )
+ )
 )
+
