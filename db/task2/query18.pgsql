@@ -1,0 +1,8 @@
+SELECT DISTINCT city
+FROM projects
+UNION
+SELECT DISTINCT city
+FROM parts
+UNION
+SELECT DISTINCT city
+FROM suppliers
